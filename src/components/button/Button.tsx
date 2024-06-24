@@ -1,21 +1,28 @@
-import './button.css';
+import { FormEvent } from 'react';
+import styles from './button.module.css';
 
 //добавили interface props
 // которые просил добавить ts для безопасности
 
 interface IButtonProps {
-  isGetButton: boolean;
+  isGetButton?: boolean;
   // buttonText необязательный пропс, указан через оператор '?'
   buttonText?: string;
   // типизируем props с функцией без return
   onButtonClick?: () => void;
+  buttonType?: 'button' | 'submit' | 'reset';
+  onSubmit?:(e: FormEvent<HTMLButtonElement>) => void;
 }
 
-function Button({ buttonText = 'push', isGetButton, onButtonClick }: IButtonProps) {
+function Button({ buttonText = 'push', isGetButton = true, onButtonClick, onSubmit, buttonType = 'button' }: IButtonProps) {
+
+
   return (
     <button
+      type={buttonType}
+      onSubmit={onSubmit}
       onClick={onButtonClick}
-      className={`button ${isGetButton ? 'button-danger' : 'button-primary'}`}
+      className={`${styles.button} ${isGetButton ? styles.buttonDanger : styles.buttonPrimary}`}
     >
       {buttonText}
     </button>
