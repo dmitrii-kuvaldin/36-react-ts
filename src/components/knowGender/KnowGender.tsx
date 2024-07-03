@@ -17,22 +17,18 @@ const KnowGender: FC = () => {
   // переменная для хранения
   const [name, setName] = useState<IGender | undefined>(undefined);
 
-  // асинхронная функция
-  async function sendData(name: string) {
-    const res = await fetch(`https://api.genderize.io/?name=${name}`);
-    const data = await res.json();
-    console.log(data);
-    setName(data);
-  }
-
   // специальный объект formik - результат вызова хука useFormik() с настройками
   const formik = useFormik({
     initialValues: {
       name: ''
     } as IFormGender,
-    onSubmit: (values: IFormGender) => {
+    onSubmit: async (values: IFormGender, { resetForm }) => {
       // вызов асинхронный функции с fetch запросом
-      sendData(values.name);
+      const res = await fetch(`https://api.genderize.io/?name=${values.name}`);
+      const data = await res.json();
+      console.log(data);
+      setName(data);
+      resetForm();
     }
   });
 

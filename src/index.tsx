@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Lesson12 from './lessons/lesson_12/Lesson12';
+import Lesson13 from './lessons/lesson_13/Lesson13';
 
 
 const root = ReactDOM.createRoot(
@@ -8,7 +8,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <main>
-    <Lesson12 />
+    <Lesson13 />
   </main>
 );
 

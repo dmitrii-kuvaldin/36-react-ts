@@ -1,5 +1,6 @@
 import { useFormik } from 'formik';
 import { FC } from 'react';
+import * as Yup from 'yup';
 import styles from './myForm.module.css';
 
 
@@ -9,55 +10,81 @@ interface IFormValues {
   email: string;
 }
 
-
 const MyForm: FC = () => {
-  // хук из formik useFormik() принимает в себя объект с ключами:
-  // по ключу initialValues - объект с описанием полей input и их начальным значением
-  // по ключу onSubmit- функция для описание действия по событию submit
+
+  // описали схему для валидации👨‍⚕️
+  const schema = Yup
+    .object()
+    .shape({
+      // firstName это строка, поле обязательное
+      firstName: Yup
+        .number()
+        .typeError('Введи свой номер, робот 👨‍⚕️')
+        .required('Имя обязательно')
+        .min(100, 'твоя модель начинается с номера 100!')
+        .max(1000, 'ты не такой новый робот! модель до 1000...'),
+      // lastName это строка, поле обязательное
+      lastName: Yup
+        .string()
+        .required('Введи фамилию создателя!'),
+      // email это строка, это формат email, поле обязательное
+      email: Yup
+        .string()
+        .email('Некорректный формат email')
+        .required('Email обязателен')
+    });
+
+
   const formik = useFormik(
     {
-      // ! ключи в initialValues должны обязательно соответствовать id в input 🔑
-      // * иначе форма не будет работать 😢
       initialValues: {
         firstName: '',
         lastName: '',
-        email: ''
+        email: '',
       } as IFormValues,
+      // добавили схему в formik
+      validationSchema: schema,
+      // изменили валидацию по умолчанию
+      // теперь она по нажатию на кнопку
+      // а не на каждое изменение
+      validateOnChange: false,
       onSubmit: (values: IFormValues) => {
-        console.log('My name is', values.firstName, values.firstName, '!');
-        console.log('My email:', values.email);
+        // здесь мог бы быть fetch запрос на бек
+        // или обращение к api
+        console.log(values);
       }
     });
 
 
 
 
-
-
   return (
-    // handleSubmit - специальный сгенерированный библиотекой formik метод, на основе наших данных переданных в useFormik()
     <form onSubmit={formik.handleSubmit} className={styles.container}>
+      <label htmlFor="">Это форма для 🤖</label>
       <input
         type="text"
-        placeholder='firstName'
+        placeholder='твой номер'
         id='firstName'
         onChange={formik.handleChange}
         value={formik.values.firstName} />
       <input
         type="text"
-        placeholder='lastName'
+        placeholder='твой создатель'
         id='lastName'
         onChange={formik.handleChange}
         value={formik.values.lastName}
       />
       <input
-        type="email"
-        placeholder='email'
+        type="text"
+        placeholder='email компании'
         id='email'
         onChange={formik.handleChange}
         value={formik.values.email}
       />
       <button type='submit'>send data 📲</button>
+      <span>{formik.errors.email}</span>
+      <span>{formik.errors.firstName}</span>
+      <span>{formik.errors.lastName}</span>
     </form>
 
   );
