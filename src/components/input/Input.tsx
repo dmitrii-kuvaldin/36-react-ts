@@ -2,8 +2,8 @@ import { ChangeEvent } from 'react';
 import styles from './input.module.css';
 
 interface IInputProps {
-  name: string,
-  placeholder: string,
+  name?: string,
+  placeholder?: string,
   type?: string,
   label?: string,
   value?: string,

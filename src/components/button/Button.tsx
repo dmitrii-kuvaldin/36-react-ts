@@ -6,16 +6,15 @@ import styles from './button.module.css';
 
 interface IButtonProps {
   isGetButton?: boolean;
-  // buttonText необязательный пропс, указан через оператор '?'
   name?: string;
-  // типизируем props с функцией без return
   onClick?: () => void;
   disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
   onSubmit?: (e: FormEvent<HTMLButtonElement>) => void;
 }
 
-function Button({ name = 'undefined', isGetButton = false, onClick, onSubmit, type = 'button', disabled = false }: IButtonProps) {
+function Button({
+  name = 'undefined', isGetButton = false, onClick, onSubmit, type = 'button', disabled = false }: IButtonProps) {
 
 
   return (
