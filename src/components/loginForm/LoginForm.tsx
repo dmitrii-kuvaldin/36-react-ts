@@ -5,8 +5,8 @@ import styles from './loginform.module.css'
 function LoginForm() {
   return (
     <div className={styles.form}>
-      <Input type={'email'} placeholder={'Type your email'} label={'Email'} />
-      <Input type={'password'} placeholder={'Type your password'} label={'Password'} />
+      <Input name={'email'} type={'email'} placeholder={'Type your email'} label={'Email'} />
+      <Input name={'password'} type={'password'} placeholder={'Type your password'} label={'Password'} />
       <Button />
     </div>
   );

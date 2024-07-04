@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom/client';
+import EmployeeForm from './components/employeeForm/EmployeeForm';
 import './index.css';
-import Lesson13 from './lessons/lesson_13/Lesson13';
 
 
 const root = ReactDOM.createRoot(
@@ -8,7 +8,8 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <main>
-    <Lesson13 />
+    {/* <Lesson13 /> */}
+    <EmployeeForm />
   </main>
 );
 

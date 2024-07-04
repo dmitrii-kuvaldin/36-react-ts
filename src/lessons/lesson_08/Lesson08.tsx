@@ -47,8 +47,8 @@ const Lesson08 = () => {
     <div>
       <p>Lesson08</p>
       {/* здесь кнопка покажет push как значение по умолчанию, потому что мы не передали buttonText */}
-      <Button isGetButton={true} buttonText={'push!'} onButtonClick={consolePush} />
-      <Button onButtonClick={consoleClick} buttonText='click me!' isGetButton={false} />
+      <Button isGetButton={true} name={'push!'} onClick={consolePush} />
+      <Button onClick={consoleClick} name='click me!' isGetButton={false} />
 
     </div>
   );

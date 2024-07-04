@@ -7,24 +7,26 @@ import styles from './button.module.css';
 interface IButtonProps {
   isGetButton?: boolean;
   // buttonText необязательный пропс, указан через оператор '?'
-  buttonText?: string;
+  name?: string;
   // типизируем props с функцией без return
-  onButtonClick?: () => void;
-  buttonType?: 'button' | 'submit' | 'reset';
-  onSubmit?:(e: FormEvent<HTMLButtonElement>) => void;
+  onClick?: () => void;
+  disabled?: boolean;
+  type?: 'button' | 'submit' | 'reset';
+  onSubmit?: (e: FormEvent<HTMLButtonElement>) => void;
 }
 
-function Button({ buttonText = 'push', isGetButton = true, onButtonClick, onSubmit, buttonType = 'button' }: IButtonProps) {
+function Button({ name = 'undefined', isGetButton = false, onClick, onSubmit, type = 'button', disabled = false }: IButtonProps) {
 
 
   return (
     <button
-      type={buttonType}
+      type={type}
       onSubmit={onSubmit}
-      onClick={onButtonClick}
+      onClick={onClick}
       className={`${styles.button} ${isGetButton ? styles.buttonDanger : styles.buttonPrimary}`}
+      disabled={disabled}
     >
-      {buttonText}
+      {name}
     </button>
   );
 }
