@@ -10,11 +10,11 @@
   margin: auto;
 }
 
-label {
+/* label {
   margin: 10px 0 5px;
   font-size: 14px;
   color: #333;
-}
+} */
 
 input[type="checkbox"] {
   margin-right: 10px;
