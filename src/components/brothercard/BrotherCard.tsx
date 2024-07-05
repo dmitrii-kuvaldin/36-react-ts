@@ -12,9 +12,9 @@ interface IBrotherProps {
 
 export default function brotherPropCard({ brotherProp, setBrothers }: IBrotherProps) {
 
-  const delBrother = (id: number) => {
-    setBrothers(prev => prev.filter(brother => brother.id !== id));
-  };
+  // const delBrother = (id: number) => {
+  //   setBrothers(prev => prev.filter(brother => brother.id !== id));
+  // };
 
   return (
     <div className={styles.brotherCardContainer}>

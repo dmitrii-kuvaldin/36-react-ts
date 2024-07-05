@@ -1,20 +1,7 @@
 ### задание
 
-
-1.  Сделайте форму для отправки pass и username с помощью formik в новом компоненте
-2.  Данные должны отправиться на api `https://dummyjson.com/docs/users`
-3.  Api ждет post запрос - его синтаксис есть в документации.
-
-
-```js
-fetch('https://dummyjson.com/user/login', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({
-    username: 'emilys',
-    password: 'emilyspass'
-  })
-});
-```
-
-- выведите результат на странице (имя, email, картинка)
+1.  Добавьте два новых пути в ротуинг.
+2.  В одном из компонентнов формы используйте. перенаправление на главную страницу через useNavigate()
+3.  Реализуйте отображение в header текущей страницы в меню через useLocation().
+4.  Сделайте deploy на git pages и проверьте корректное отображение.
+5.  Пропишите правила отображения верстки вашего сайта для мобильных устройств через media queries `https://www.w3schools.com/css/css_rwd_mediaqueries.asp`

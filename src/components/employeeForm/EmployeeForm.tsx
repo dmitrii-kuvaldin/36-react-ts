@@ -3,6 +3,7 @@ import * as Yup from 'yup';
 import Button from '../button/Button';
 import Input from '../input/Input';
 import styles from './employeeForm.module.css';
+import { useNavigate } from 'react-router-dom';
 
 interface IFormValues {
   name: string;
@@ -26,6 +27,10 @@ const schema = Yup.object().shape({
 
 
 export default function EmployeeForm() {
+  // хук useNavigate() перенаправляет нас на выбранную страницу
+  // в отличие от ссылке он может сработать внутри функции после какого-то набора действий
+  const navigate = useNavigate()
+
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -38,6 +43,9 @@ export default function EmployeeForm() {
     validateOnChange: false,
     onSubmit: (values: IFormValues) => {
       console.log(values);
+      // вызываем navigate со значением домашней странице
+      // перенаправляете пользователя со страницы заполнения формы
+      navigate('/')
     }
   });
 
