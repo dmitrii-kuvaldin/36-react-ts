@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Button from '../button/Button';
 import style from "./fakeStore.module.css";
 
-interface Iproduct {
+export interface Iproduct {
   id: number;
   title: string;
   price: number;
@@ -15,6 +15,7 @@ interface Iproduct {
     count: number;
   };
 }
+
 const FakeStore = () => {
   const [products, setProducts] = useState<Iproduct[]>([]);
   async function getData() {
@@ -38,7 +39,9 @@ const FakeStore = () => {
             <span>{product.category}</span> */}
             <img src={product.image} alt={product.title} />
             {/* добавляем id товара к адресу */}
-            <Link to={String(product.id)}><Button name='к продукту'></Button></Link>
+            <div className={style.buttonWrapper}>
+              <Link to={String(product.id)}><Button name='к продукту'></Button></Link>
+            </div>
           </div>
         ))}
       </div>
