@@ -1,16 +1,22 @@
 import { useFormik } from 'formik';
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 import * as Yup from 'yup';
 import styles from './myForm.module.css';
+import { UserContext } from '../userContext/UserContext';
 
 
-interface IFormValues {
+export interface IFormValues {
   firstName: string;
   lastName: string;
   email: string;
 }
 
 const MyForm: FC = () => {
+  // вызываем хук useContext для работы с контекстом из компонентов
+  // передаем импортированный контекст в качестве параметра
+  // получаем через деструктуризацию данные из контекста
+
+  const {setUser} = useContext(UserContext)
 
   // описали схему для валидации👨‍⚕️
   const schema = Yup
@@ -51,6 +57,7 @@ const MyForm: FC = () => {
       onSubmit: (values: IFormValues) => {
         // здесь мог бы быть fetch запрос на бек
         // или обращение к api
+        setUser(values)
         console.log(values);
       }
     });

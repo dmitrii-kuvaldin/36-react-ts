@@ -20,9 +20,12 @@ const Product = () => {
     }
   };
   const [product, setProduct] = useState<Iproduct>(initialValue);
+  // здесь мы забираем id из адресной строки
   const { id } = useParams();
 
   useEffect(() => {
+    // здесь мы передаем id в качестве параметра в get
+    // запрос по отдельному продукту
     fetch(`https://fakestoreapi.com/products/${id}`)
       .then(res => res.json())
       .then(data => setProduct(data));

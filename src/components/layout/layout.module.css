@@ -11,7 +11,12 @@
 }
 
 
-
+.credentials {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  margin-right: 20px;
+}
 
 .active {
   text-decoration: underline;

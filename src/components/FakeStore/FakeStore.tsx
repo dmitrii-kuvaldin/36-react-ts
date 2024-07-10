@@ -29,22 +29,32 @@ const FakeStore = () => {
 
   return (
     <>
-      <h3>Shop</h3>
-      <div className={style.container}>
-        {products.map((product) => (
-          <div key={product.id} className={style.card}>
-            <h2>{product.title}</h2>
-            <span>{product.price}$</span>
-            {/* <p>{product.description}</p>
-            <span>{product.category}</span> */}
-            <img src={product.image} alt={product.title} />
-            {/* добавляем id товара к адресу */}
-            <div className={style.buttonWrapper}>
-              <Link to={String(product.id)}><Button name='к продукту'></Button></Link>
+      {
+        products.length > 0 && (
+          <>
+            <h3>Shop</h3>
+            <div className={style.container}>
+              {products.map((product) => (
+                // ! можно вынести в отдельный компонент-карточку
+                // <Button name={product.title}/>
+                // <ProductCard title={product.title} />
+                <div key={product.id} className={style.card}>
+                  <h2>{product.title}</h2>
+                  <span>{product.price}$</span>
+                  {/* <p>{product.description}</p>
+                  <span>{product.category}</span> */}
+                  <img src={product.image} alt={product.title} />
+                  {/* добавляем id товара к адресу */}
+                  <div className={style.buttonWrapper}>
+                    <Link to={String(product.id)}><Button name='к продукту'></Button></Link>
+                  </div>
+                </div>
+                // ! можно вынести в отдельный компонент-карточку
+              ))}
             </div>
-          </div>
-        ))}
-      </div>
+          </>
+        )
+      }
     </>
   );
 };
