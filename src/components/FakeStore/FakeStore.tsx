@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
-import Button from '../button/Button';
+import ProductCard from '../productCard/ProductCard';
 import style from "./fakeStore.module.css";
 
 export interface Iproduct {
@@ -35,21 +34,12 @@ const FakeStore = () => {
             <h3>Shop</h3>
             <div className={style.container}>
               {products.map((product) => (
-                // ! можно вынести в отдельный компонент-карточку
-                // <Button name={product.title}/>
-                // <ProductCard title={product.title} />
-                <div key={product.id} className={style.card}>
-                  <h2>{product.title}</h2>
-                  <span>{product.price}$</span>
-                  {/* <p>{product.description}</p>
-                  <span>{product.category}</span> */}
-                  <img src={product.image} alt={product.title} />
-                  {/* добавляем id товара к адресу */}
-                  <div className={style.buttonWrapper}>
-                    <Link to={String(product.id)}><Button name='к продукту'></Button></Link>
-                  </div>
-                </div>
-                // ! можно вынести в отдельный компонент-карточку
+                <ProductCard
+                  key={product.id}
+                  image={product.image}
+                  title={product.title}
+                  id={product.id}
+                />
               ))}
             </div>
           </>
