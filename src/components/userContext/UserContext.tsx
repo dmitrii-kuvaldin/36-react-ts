@@ -12,6 +12,7 @@ interface IFormValues {
 interface IUserContext {
   user: IFormValues,
   setUser: React.Dispatch<React.SetStateAction<IFormValues>>;
+  message: string
 }
 
 // протипизировали children -
@@ -30,7 +31,8 @@ const initialContext: IUserContext = {
     lastName: '',
     email: '',
   },
-  setUser: () => { }
+  setUser: () => { },
+  message: ''
 };
 
 // создали сам контекст, передали начальное значение и экспортировали
@@ -47,10 +49,12 @@ export function UserProvider({ children }: IUserProviderProps) {
     email: ''
   });
 
+  const message = 'bye-bye from context 🙋‍♂️'
+
 
   return (
     // ! передаем в value значение
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, setUser, message }}>
       {children}
     </UserContext.Provider>
   );
