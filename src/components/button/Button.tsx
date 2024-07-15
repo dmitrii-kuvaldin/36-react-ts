@@ -7,7 +7,7 @@ import styles from './button.module.css';
 interface IButtonProps {
   isGetButton?: boolean;
   name?: string;
-  onClick?: () => void;
+  onClick?: () => void | ((event: number) => void);
   disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
   onSubmit?: (e: FormEvent<HTMLButtonElement>) => void;

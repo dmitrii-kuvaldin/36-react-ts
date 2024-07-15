@@ -18,5 +18,9 @@ export const links = [
   {
     pathname: '/shop-page',
     title: 'shop page'
+  },
+  {
+    pathname: '/shop-page',
+    title: 'shop page'
   }
 ];
