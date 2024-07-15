@@ -20,7 +20,6 @@ export default function Header() {
       {links.map((el, index) => (
         <Link key={index} className={location.pathname === el.pathname ? styles.active : ''} to={el.pathname}>{el.title}</Link>
       ))}
-
     </header>
   );
 }

@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Iproduct } from '../FakeStore/FakeStore';
+
 
 import Button from '../button/Button';
 import styles from './product.module.css';
+import { Iproduct } from '../../features/reduxProducts/types';
 
 const Product = () => {
 

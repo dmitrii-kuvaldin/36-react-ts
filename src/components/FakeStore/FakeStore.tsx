@@ -1,19 +1,9 @@
 import { useEffect, useState } from "react";
 import ProductCard from '../productCard/ProductCard';
 import style from "./fakeStore.module.css";
+import { Iproduct } from '../../features/reduxProducts/types';
 
-export interface Iproduct {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-}
+
 
 const FakeStore = () => {
   const [products, setProducts] = useState<Iproduct[]>([]);

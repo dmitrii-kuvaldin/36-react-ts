@@ -20,7 +20,7 @@ export const links = [
     title: 'shop page'
   },
   {
-    pathname: '/shop-page',
-    title: 'shop page'
+    pathname: '/redux-shop',
+    title: 'redux shop'
   }
 ];
