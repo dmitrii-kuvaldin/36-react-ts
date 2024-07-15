@@ -1,18 +1,13 @@
-import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { getProducts } from './reduxProductsAction';
+// import { useEffect } from 'react';
+import { useAppSelector } from '../../app/hooks';
+// import { getProducts } from './reduxProductsAction';
 
 function ReduxProducts() {
   // достаем данные и store из деструктуризации
   // мы имеем доступ к этим данным в любом месте приложения
   const {products, isLoading, error} = useAppSelector(store => store.reduxProducts)
   // готовимся отправить данные через dispatch
-  const dispatch = useAppDispatch()
 
-  useEffect(()=> {
-    // в диспатч передаем вызов функции из файла с actions
-    dispatch(getProducts())
-  }, [])
   return (
     <div>
       <h3>Redux products</h3>
@@ -26,6 +21,7 @@ function ReduxProducts() {
       {products && products.map(el => (
         <p>{el.title}</p>
       ))}
+      {error && <p style={{color: 'red'}}>{error}</p>}
     </div>
   );
 }

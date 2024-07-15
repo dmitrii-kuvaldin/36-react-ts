@@ -7,6 +7,7 @@ export const store = configureStore({
     // добавляем данные в store из reduxProductsSlice
     // через обращение к его ключу reducer
     reduxProducts: reduxProductsSlice.reducer
+    // user: userSlice.reducer
   },
 });
 
