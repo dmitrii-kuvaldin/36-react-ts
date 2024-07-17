@@ -1,18 +1,15 @@
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { HashRouter, Route, Routes } from 'react-router-dom';
-import EmployeeForm from './components/employeeForm/EmployeeForm';
+import { store } from './app/store';
 import FakeStore from './components/FakeStore/FakeStore';
 import HomePage from './components/homePage/HomePage';
 import Layout from './components/layout/Layout';
-import MyForm from './components/myForm/MyForm';
 import Product from './components/product/Product';
-import TestParams from './components/testParams/TestParams';
 import { UserProvider } from './components/userContext/UserContext';
-import ReduxProducts from './features/reduxProducts/ReduxProducts';
-import BrotherHood from './homeworks/homework_08/brotherhood/BrotherHood';
+
 import './index.css';
-import { store } from './app/store';
+import Auth from './components/auth/Auth';
 
 
 const root = ReactDOM.createRoot(
@@ -27,13 +24,9 @@ root.render(
         <Routes>
           <Route path='/' element={<Layout />} >
             <Route path='/' element={<HomePage />} />
-            <Route path='/login-form' element={<MyForm />} />
-            <Route path='/brotherhood' element={<BrotherHood />} />
-            <Route path='/employee-form' element={<EmployeeForm />} />
+            <Route path='/login' element={<Auth />} />
             <Route path='/shop-page' element={<FakeStore />} />
-            <Route path='/redux-shop' element={<ReduxProducts />} />
             <Route path='/shop-page/:id' element={<Product />} />
-            <Route path='/:name/:lastname' element={<TestParams />} />
             <Route path='*' element={<h1>Error 404 😵</h1>} />
           </Route>
         </Routes>

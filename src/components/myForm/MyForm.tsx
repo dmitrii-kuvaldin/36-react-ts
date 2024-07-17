@@ -5,7 +5,7 @@ import styles from './myForm.module.css';
 import { UserContext } from '../userContext/UserContext';
 
 
-export interface IFormValues {
+interface IFormValues {
   firstName: string;
   lastName: string;
   email: string;

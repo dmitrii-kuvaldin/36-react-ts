@@ -1,25 +1,30 @@
-import { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useAppSelector } from '../../app/hooks';
 import { links } from '../header/links';
-import { UserContext } from '../userContext/UserContext';
 import styles from './header.module.css';
 
 export default function Header() {
   const location = useLocation();
-  const { user } = useContext(UserContext);
+  const { user } = useAppSelector(store => store.user);
 
   return (
     <header className={styles.header}>
-      {user.firstName && (
-        <div className={styles.credentials}>
-          <span>🤖: №{user.firstName}</span>
-          <span>создатель: {user.lastName}</span>
-          <span>email: {user.email}</span>
-        </div>)}
+      {user.username ? (
+          <>
+          <div className={styles.credentials}>
+            <span>user: {user.firstName}</span>
+            <span>lastname: {user.lastName}</span>
+            <span>email: {user.email}</span>
+          </div>
 
-      {links.map((el, index) => (
-        <Link key={index} className={location.pathname === el.pathname ? styles.active : ''} to={el.pathname}>{el.title}</Link>
-      ))}
+          {links.map((el, index) => (
+            <Link key={index} className={location.pathname === el.pathname ? styles.active : ''} to={el.pathname}>{el.title}</Link>
+          ))}
+          
+          </>
+      ) : (
+        <Link to='/login'>Login</Link>
+      )}
     </header>
   );
 }

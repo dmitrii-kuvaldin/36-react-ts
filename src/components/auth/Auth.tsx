@@ -1,15 +1,17 @@
 // import styles from './auth.module.css'
 
 import { useFormik } from 'formik';
-import { useState } from 'react';
+import { useAppDispatch } from '../../app/hooks';
+import { loginUser } from '../../features/auth/authAction';
+import { useNavigate } from 'react-router-dom';
 
 
-interface IFormValues {
+export interface IFormValues {
   username: string;
   password: string;
 }
 
-interface IUserData {
+export interface IUserData {
   id: number;
   username: string;
   gender: string;
@@ -21,58 +23,29 @@ interface IUserData {
   token: string;
 }
 
-const initial = {
-  id: 0,
-  username: '',
-  gender: '',
-  email: '',
-  image: '',
-  firstName: '',
-  lastName: '',
-  refreshToken: '',
-  token: '',
-};
-
 
 export default function Auth() {
-  const [userData, setUserData] = useState<IUserData>(initial);
+  // функция, в которою мы параметром передаем вызов actions из redux
+  const dispatch = useAppDispatch()
+  // функция для переадресации из react-router-dom
+  const navigate = useNavigate()
 
   const formik = useFormik({
     initialValues: {
-      username: '',
-      password: ''
+      username: 'emilys',
+      password: 'emilyspass'
     } as IFormValues,
     onSubmit: async (values: IFormValues, { resetForm }) => {
-      const res = await fetch('https://dummyjson.com/user/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          username: values.username,
-          password: values.password
-        })
-      });
-      const data = await res.json();
-      setUserData(data);
+      // ! здесь мы делаем запрос за данными
+      dispatch(loginUser(values))
       resetForm();
+      // в navigate мы предаем путь куда мы отправляем пользователя после выполнения действия
+      navigate('/')
     }
   });
 
-  // async function loginData(values: IFormValues) {
-  //   const res = await fetch('https://dummyjson.com/user/login', {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify({
-  //       username: values.username,
-  //       password: values.password
-  //     })
-  //   });
-  //   const data = await res.json()
-  //   console.log(data);
-  // }
-
   return (
     <div>
-      <span>Formik auth</span>
       <p>username: 'emilys',
         password: 'emilyspass'</p>
       <form onSubmit={formik.handleSubmit}>
@@ -82,13 +55,13 @@ export default function Auth() {
       </form>
 
 
-      {userData.firstName && (
+      {/* {userData.firstName && (
         <>
           <p>Name: {userData.firstName}</p>
           <p>Last name: {userData.lastName}</p>
           <p>Email: {userData.email}</p>
           <img width={200} src={userData.image} alt="" />
-        </>)}
+        </>)} */}
 
 
     </div>
