@@ -17,8 +17,8 @@ export default function Layout() {
     if (token !== null) {
       // отправляем запрос из redux
       dispatch(getUserWithToken(token));
+      dispatch(getProducts());
     }
-    dispatch(getProducts());
   }, [dispatch]);
 
 

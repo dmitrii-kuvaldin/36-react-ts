@@ -1,14 +1,15 @@
 import { useAppSelector } from '../../app/hooks';
+import Loader from '../loader/Loader';
 
 
 export default function HomePage() {
-  const { user } = useAppSelector(store => store.user);
+  const { user, isLoading } = useAppSelector(store => store.user);
 
   return (
     <div>
-      {user.firstName ?
-        <h2>Welcome home 🏡</h2> : <h2>Пройдите авторизацию 🔐</h2>
-      }
+      {!isLoading && !user.firstName && <h2>Пройдите авторизацию 🔐</h2>}
+      {isLoading && <Loader />}
+      {user.firstName && <h2>Welcome home 🏡</h2>}
     </div>
   );
 }

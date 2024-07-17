@@ -35,7 +35,14 @@ const initialState: IUserState = {
 export const authSlice = createSlice({
   name: 'authSlice',
   initialState,
-  reducers: {},
+  // используется для синхронных операций со store в redux
+  reducers: {
+    // придумываем ключ-имя для action
+    // по ключу стрелочная функция с описанием операции над данными в state
+    logoutUser: (state) => {
+      state.user = initialUser
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(loginUser.pending, (state) => {
@@ -56,9 +63,14 @@ export const authSlice = createSlice({
         state.isLoading = false
         state.user = action.payload;
       })
+      .addCase(getUserWithToken.pending, (state) => {
+        state.isLoading = true;
+      })
 
   },
 });
 
 export default authSlice;
-// export const { } = authSlice.actions
+
+// экспорт синхронных actions из нашего slice
+export const { logoutUser } = authSlice.actions

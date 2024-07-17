@@ -32,7 +32,11 @@ export const reduxProductsSlice = createSlice({
   // начальные значения
   initialState,
   // обработчики синхронных действий
-  reducers: {},
+  reducers: {
+    cleanProducts:(state) => {
+      state.products = []
+    }
+  },
   // обработчик асинхронных действий
   extraReducers: (builder) => {
     builder
@@ -64,5 +68,5 @@ export const reduxProductsSlice = createSlice({
 export default reduxProductsSlice;
 
 // на случай синхронных операций
-// export const { } = reduxProductsSlice.actions
+export const { cleanProducts } = reduxProductsSlice.actions
 

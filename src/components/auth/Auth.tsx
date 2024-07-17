@@ -4,6 +4,7 @@ import { useFormik } from 'formik';
 import { useAppDispatch } from '../../app/hooks';
 import { loginUser } from '../../features/auth/authAction';
 import { useNavigate } from 'react-router-dom';
+import { getProducts } from '../../features/reduxProducts/reduxProductsAction';
 
 
 export interface IFormValues {
@@ -38,6 +39,7 @@ export default function Auth() {
     onSubmit: async (values: IFormValues, { resetForm }) => {
       // ! здесь мы делаем запрос за данными
       dispatch(loginUser(values))
+      dispatch(getProducts());
       resetForm();
       // в navigate мы предаем путь куда мы отправляем пользователя после выполнения действия
       navigate('/')
