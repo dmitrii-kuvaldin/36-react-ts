@@ -4,14 +4,9 @@ import { IFormValues, IUserData } from '../../components/auth/Auth';
 
 export const loginUser = createAsyncThunk(
   'authAction',
-  // в параметр дата придут данные из формы, когда мы вызовем loginUser
   async (data: IFormValues, thunkAPI) => {
     try {
-      // мы типизируем response внутренним типом библиотеки axios и дженериком добавляем тип данных, которые придут в ответе
       const response: AxiosResponse<IUserData> = await axios.post('https://dummyjson.com/user/login', data);
-      // записываем токен для последующего автоматического входа в аккаунт
-      // во внутреннее хранилище браузера local storage
-      // его данные доступны во вкладке application в браузере
       localStorage.setItem("shop-token", response.data.token);
       return response.data;
     } catch (error: any) {

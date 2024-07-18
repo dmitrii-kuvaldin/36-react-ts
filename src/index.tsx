@@ -10,6 +10,7 @@ import { UserProvider } from './components/userContext/UserContext';
 
 import './index.css';
 import Auth from './components/auth/Auth';
+import ProtectedRoute from './components/protectedRoute/ProtectedRoute';
 
 
 const root = ReactDOM.createRoot(
@@ -25,8 +26,8 @@ root.render(
           <Route path='/' element={<Layout />} >
             <Route path='/' element={<HomePage />} />
             <Route path='/login' element={<Auth />} />
-            <Route path='/shop-page' element={<FakeStore />} />
-            <Route path='/shop-page/:id' element={<Product />} />
+            <Route path='/shop-page' element={<ProtectedRoute component={<FakeStore/>}/>} />
+            <Route path='/shop-page/:id' element={<ProtectedRoute component={<Product/>}/>} />
             <Route path='*' element={<h1>Error 404 😵</h1>} />
           </Route>
         </Routes>

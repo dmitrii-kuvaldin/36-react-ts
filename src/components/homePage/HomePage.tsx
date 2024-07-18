@@ -4,6 +4,7 @@ import Loader from '../loader/Loader';
 
 export default function HomePage() {
   const { user, isLoading } = useAppSelector(store => store.user);
+  
 
   return (
     <div>
